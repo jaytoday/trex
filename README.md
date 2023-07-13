@@ -19,7 +19,7 @@ To use Trex, you'll need an API key, which you can get by signing up for a free 
 ```python
 import trex
 
-tx = trex.Trex('<YOUR_AUTOMORPHIC_API_KEY_HERE>')
+tx = trex.Trex('<YOUR_AUTOMORPHIC_API_KEY>')
 prompt = '''generate a valid json object of the following format:
 
 {
@@ -41,7 +41,7 @@ where pet is defined as:
 
 in the above object name is a string corresponding to the name of the pet, species is a string corresponding to the species of the pet, cost is a number corresponding to the cost of the pet, and dob is a string corresponding to the date of birth of the pet.
 
-given the above, generate a valid json object containing the following data: one human named dave 30 years old 5 foot 8 with a single dog pet named 'trex'. the dog costed $100 and was born on 9/1/2003.
+given the above, generate a valid json object containing the following data: one human named dave 30 years old 5 foot 8 with a single dog pet named 'trex'. the dog costed $100 and was born on 9/11/2001.
 '''
 
 custom_grammar = r"""
