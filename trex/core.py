@@ -37,10 +37,10 @@ class Trex:
                 """
 
     def __init__(self, api_key: str | None = None):
-        self.api_key = api_key or os.getenv("TREX_API_KEY")
+        self.api_key = api_key or os.getenv("AUTOMORPHIC_API_KEY")
         if not self.api_key:
             raise ValueError(
-                "TREX_API_KEY must be set in the environment or passed into the client."
+                "AUTOMORPHIC_API_KEY must be set in the environment or passed into the client."
             )
         
     def generate_cfg(self, prompt: str, cfg: str, language: str = None, max_tokens: int = 512) -> TrexResponse:
