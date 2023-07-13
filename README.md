@@ -1,6 +1,6 @@
-# Trex
+<h1 align="center">Trex</h1>
 
-## <em>T</em>ransformer <em>R</em>egular <em>EX</em>pressions
+<h2 align="center"><em>T</em>ransformer <em>R</em>egular <em>EX</em>pressions</h2>
 
 <p align="center"><img src="https://media.discordapp.net/attachments/1107132978859085824/1128974288381288523/Screenshot_2023-07-13_050009-transformed.png" width="25%"/></p>
 
