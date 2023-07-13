@@ -89,9 +89,9 @@ print(tx.generate_cfg(prompt, cfg=custom_grammar, language='json').response)
 - [x] Structured JSON generation
 - [x] Structured custom CFG generation
 - [x] Structured custom regex generation
-- [ ] Auto-prompt generation for unstructured ETL
 - [ ] SIGNIFICANT speed improvements (in progress)
-- [ ] larger, more capable models
+- [ ] Auto-prompt generation for unstructured ETL
+- [ ] More intelligent models
 
 Join our [Discord](https://discord.gg/E8y4NcNeBe) or [email us](mailto:founders@automorphic.ai), if you're interested in or need help using Trex, have ideas, or want to contribute.
 
