@@ -9,8 +9,8 @@ def read(fname):
 setup(
     name="trex",
     version="0.0.1",
-    author="Govind Gnanakumar",
-    author_email="govind@automorphic.ai",
+    author="Mahesh Natamai, Govind Gnanakumar",
+    author_email="founders@automorphic.ai",
     description=(
         "Trex transforms your unstructured to structured data—just specify a regex or context free grammar and we'll intelligently ensure your data conforms."
     ),
