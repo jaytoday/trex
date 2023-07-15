@@ -19,7 +19,9 @@ pip install git+https://github.com/automorphic-ai/trex.git
 ```
 
 If you'd like to self-host this in your own cloud, [email us](mailto:founders@automorphic.ai).
+
 ## Usage
+To experiment with Trex, check out the [playground](https://automorphic.ai/playground).
 
 To use Trex, you'll need an API key, which you can get by signing up for a free account at [automorphic.ai](https://automorphic.ai).
 
