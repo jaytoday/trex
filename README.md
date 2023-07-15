@@ -8,7 +8,7 @@
 
 ### _Transform unstructured to structured data_
 
-Trex transforms your unstructured to structured data—just specify a regex or context free grammar and we'll intelligently ensure your data conforms to that schema.
+Trex transforms your unstructured to structured data—just specify a regex or context free grammar and we'll intelligently restructure your data so it conforms to that schema.
 
 ## Installation
 
