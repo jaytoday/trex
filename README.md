@@ -11,6 +11,7 @@
 Trex transforms your unstructured to structured data—just specify a regex or context free grammar and we'll intelligently restructure your data so it conforms to that schema.
 
 ## Installation
+To experiment with Trex, check out the [playground](https://automorphic.ai/playground).
 
 To install the Python client:
 
@@ -21,8 +22,6 @@ pip install git+https://github.com/automorphic-ai/trex.git
 If you'd like to self-host this in your own cloud, [email us](mailto:founders@automorphic.ai).
 
 ## Usage
-To experiment with Trex, check out the [playground](https://automorphic.ai/playground).
-
 To use Trex, you'll need an API key, which you can get by signing up for a free account at [automorphic.ai](https://automorphic.ai).
 
 ```python
