@@ -19,7 +19,7 @@ To install the Python client:
 pip install git+https://github.com/automorphic-ai/trex.git
 ```
 
-If you'd like to self-host this in your own cloud, [email us](mailto:founders@automorphic.ai).
+If you'd like to self-host this in your own cloud / with your own model, [email us](mailto:founders@automorphic.ai).
 
 ## Usage
 To use Trex, you'll need an API key, which you can get by signing up for a free account at [automorphic.ai](https://automorphic.ai).
