@@ -2,6 +2,7 @@
 import os
 import requests
 from dataclasses import dataclass
+from trex.exceptions import InvalidCFGError, InvalidRegexError
 
 @dataclass
 class TrexResponse:
@@ -57,7 +58,14 @@ class Trex:
             json={"prompt": prompt, "cfg": cfg, "language": language, "max_tokens": max_tokens},
         )
         response_json = response.json()
+        if response.status_code != 201:
+            message = response_json['detail']
+            if 'Invalid cfg' in message:
+                raise InvalidCFGError(message)
+            else:
+                response.raise_for_status()
         return TrexResponse(response=response_json['response'], tokens=response_json['tokens'])
+
 
     def generate_json(self, prompt: str, max_tokens: int = 512) -> TrexResponse:
         """
@@ -69,14 +77,20 @@ class Trex:
         response = requests.post(
             f"{Trex.BASE_URL}/generate",
             headers={"X-API-Key": self.api_key},
-            json={"prompt": prompt, "cfg": Trex.JSON_GRAMMAR, "max_tokens": max_tokens, "language": "json"},
+            json={"prompt": prompt, "cfg": Trex.JSON_GRAMMAR, "language": 'json', "max_tokens": max_tokens},
         )
         response_json = response.json()
+        if response.status_code != 201:
+            message = response_json['detail']
+            if 'Invalid cfg' in message:
+                raise InvalidCFGError(message)
+            else:
+                response.raise_for_status()
         return TrexResponse(response=response_json['response'], tokens=response_json['tokens'])
     
     def generate_regex(self, prompt: str, regex: str, max_tokens: int = 512) -> TrexResponse:
         """
-        Generate data in valid JSON.
+        Generate data to conform to a particular regex.
 
         :param prompt: The prompt / instructions / guidelines to follow when generating the data.
         :param max_tokens: The maximum number of tokens to generate. Defaults to 512.
@@ -84,7 +98,13 @@ class Trex:
         response = requests.post(
             f"{Trex.BASE_URL}/generate",
             headers={"X-API-Key": self.api_key},
-            json={"prompt": prompt, "regex": regex, "max_tokens": max_tokens, "language": "json"},
+            json={"prompt": prompt, "regex": regex, "max_tokens": max_tokens},
         )
         response_json = response.json()
+        if response.status_code != 201:
+            message = response_json['detail']
+            if 'Invalid regex' in message:
+                raise InvalidRegexError(message)
+            else:
+                response.raise_for_status()
         return TrexResponse(response=response_json['response'], tokens=response_json['tokens'])
