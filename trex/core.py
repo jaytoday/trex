@@ -2,7 +2,7 @@
 import os
 import requests
 from dataclasses import dataclass
-from trex.exceptions import InvalidCFGError, InvalidRegexError
+from trex.exceptions import InvalidCFGError, InvalidRegexError, InvalidAPIKey
 
 @dataclass
 class TrexResponse:
@@ -62,6 +62,8 @@ class Trex:
             message = response_json['detail']
             if 'Invalid cfg' in message:
                 raise InvalidCFGError(message)
+            elif response.status_code == 401:
+                raise InvalidAPIKey(f'Invalid API Key: {self.api_key}')
             else:
                 response.raise_for_status()
         return TrexResponse(response=response_json['response'], tokens=response_json['tokens'])
@@ -84,6 +86,8 @@ class Trex:
             message = response_json['detail']
             if 'Invalid cfg' in message:
                 raise InvalidCFGError(message)
+            elif response.status_code == 401:
+                raise InvalidAPIKey(f'Invalid API Key: {self.api_key}')
             else:
                 response.raise_for_status()
         return TrexResponse(response=response_json['response'], tokens=response_json['tokens'])
@@ -105,6 +109,8 @@ class Trex:
             message = response_json['detail']
             if 'Invalid regex' in message:
                 raise InvalidRegexError(message)
+            elif response.status_code == 401:
+                raise InvalidAPIKey(f'Invalid API Key: {self.api_key}')
             else:
                 response.raise_for_status()
         return TrexResponse(response=response_json['response'], tokens=response_json['tokens'])

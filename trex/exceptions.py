@@ -5,3 +5,7 @@ class InvalidCFGError(Exception):
 class InvalidRegexError(Exception):
     """Raised when a regex is invalid."""
     pass
+
+class InvalidAPIKey(Exception):
+    """Raised when an invalid API key is used."""
+    pass
