@@ -44,6 +44,26 @@ class Trex:
                 "AUTOMORPHIC_API_KEY must be set in the environment or passed into the client."
             )
         
+    def generate(self, prompt: str, max_tokens: int = 512) -> TrexResponse:
+        """
+        Generate a completion without any restrictions.
+
+        :param prompt: The prompt given to the model to generate the completion.
+        :param max_tokens: The maximum number of tokens to generate. Defaults to 512.
+        """
+        response = requests.post(
+            f"{Trex.BASE_URL}/generate",
+            headers={"X-API-Key": self.api_key},
+            json={"prompt": prompt, "max_tokens": max_tokens},
+        )
+        response_json = response.json()
+        if response.status_code != 201:
+            if response.status_code == 401:
+                raise InvalidAPIKey(f'Invalid API Key: {self.api_key}')
+            else:
+                response.raise_for_status()
+        return TrexResponse(response=response_json['response'], tokens=response_json['tokens'])
+        
     def generate_cfg(self, prompt: str, cfg: str, language: str = None, max_tokens: int = 512) -> TrexResponse:
         """
         Generate data to conform to a [lark](https://github.com/lark-parser/lark) context free grammar.
