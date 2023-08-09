@@ -12,6 +12,7 @@
 Trex transforms your unstructured to structured data—just specify a regex or context free grammar and we'll intelligently restructure your data so it conforms to that schema.
 
 ## Installation
+
 To experiment with Trex, check out the [playground](https://automorphic.ai/playground).
 
 To install the Python client:
@@ -23,6 +24,7 @@ pip install git+https://github.com/automorphic-ai/trex.git
 If you'd like to self-host this in your own cloud / with your own model, [email us](mailto:founders@automorphic.ai).
 
 ## Usage
+
 To use Trex, you'll need an API key, which you can get by signing up for a free account at [automorphic.ai](https://automorphic.ai).
 
 ```python
@@ -53,30 +55,42 @@ in the above object name is a string corresponding to the name of the pet, speci
 given the above, generate a valid json object containing the following data: one human named dave 30 years old 5 foot 8 with a single dog pet named 'trex'. the dog costed $100 and was born on 9/11/2001.
 '''
 
-custom_grammar = r"""
-    ?start: json_schema
+json_schema = {
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "age": {
+            "type": "number"
+        },
+        "height": {
+            "type": "number"
+        },
+        "pets": {
+            "type": "array",
+            "items": [{
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "species": {
+                        "type": "string"
+                    },
+                    "cost": {
+                        "type": "number"
+                    },
+                    "dob": {
+                        "type": "string"
+                    }
+                }
+            }]
+        }
+    }
+}
 
-    json_schema: "{" name "," age "," height "," pets "}"
-
-    name: "\"name\"" ":" ESCAPED_STRING
-    age: "\"age\"" ":" NUMBER
-    height: "\"height\"" ":" NUMBER
-    pets: "\"pets\"" ":" "[" [pet ("," pet)*] "]"
-
-    pet: "{" pet_name "," species "," cost "," dob "}"
-    pet_name: "\"name\"" ":" ESCAPED_STRING
-    species: "\"species\"" ":" ESCAPED_STRING
-    cost: "\"cost\"" ":" NUMBER
-    dob: "\"dob\"" ":" ESCAPED_STRING
-
-    %import common.ESCAPED_STRING
-    %import common.NUMBER
-    %import common.WS
-
-    %ignore WS
-"""
-
-print(tx.generate_cfg(prompt, cfg=custom_grammar, language='json').response)
+print(tx.generate_json(prompt, json_schema=json_schema).response)
 # the above produces:
 # {
 #     "name": "dave",
@@ -98,7 +112,8 @@ print(tx.generate_cfg(prompt, cfg=custom_grammar, language='json').response)
 - [x] Structured JSON generation
 - [x] Structured custom CFG generation
 - [x] Structured custom regex generation
-- [ ] SIGNIFICANT speed improvements (in progress)
+- [x] SIGNIFICANT speed improvements
+- [x] Generation from JSON schema
 - [ ] Auto-prompt generation for unstructured ETL
 - [ ] More intelligent models
 
