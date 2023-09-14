@@ -16,7 +16,7 @@ class TrexResponse:
 class Trex:
     """Trex API client."""
 
-    BASE_URL = "https://govi.automorphic.ai/trex"
+    BASE_URL = "https://api.automorphic.ai/trex"
     JSON_GRAMMAR = r"""
                     ?start: object
 
